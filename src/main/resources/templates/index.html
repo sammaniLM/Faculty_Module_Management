@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<style>
+    /*Clock*/
+    /* Center the clock */
+
+    .fc{
+        width: 102%;
+        height: 85%;
+    }
+    #col-md-6 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Style the clock container */
+    .clock-container {
+        background-color: #f0f0f0;
+        border: 2px solid #333;
+        border-radius: 8px;
+        padding: 75px;
+    }
+
+    #clock-text {
+        font-size: 60px;
+        font-weight: bold;
+    }
+
+    /*Calendar*/
+    .custom-calendar{
+        color: black !important;
+    }
+
+    .highlight-today {
+        background-color: white !important;
+        color: darkred !important;
+    }
+
+    .fc-license-message {
+        display: none;
+    }
+</style>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-lg-2.5 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none disabled">
+                    <span class="fs-5 d-none d-sm-inline fw-bold fs-1"><i class="fa-solid fa-building-columns fa-lg" style="color: #ffffff;"></i> FOC</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start mt-5 lh-lg" id="menu">
+                    <li class="nav-item">
+                        <a th:href="@{/}" class="nav-link align-middle px-0">
+                            <i class="fa-solid fa-house" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white"> Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/students}" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-children" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white lh-lg"> Student Management</span> </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/degree}" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white lh-lg"> Degree Management</span></a>
+                    </li>
+                    <li>
+                        <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white"> Module Management</span></a>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i><span class="ms-1 d-none d-sm-inline text-white lh-lg"> Module Enrollment</span> </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fa-regular fa-square-check" style="color: #ffffff;"></i></i><span class="ms-1 d-none d-sm-inline text-white lh-lg"> Module Marking</span> </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i><span class="ms-1 d-none d-sm-inline text-white lh-lg"> Report</span> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col py-1">
+           <div class="container">
+               <div class="row">
+                   <nav class="navbar navbar-light bg-white">
+                       <h1 class="navbar-brand fs-1">Dashboard</h1>
+                       <a href="#" th:title="Logout" class="text-decoration-none text-dark fs-6">John Doe</a>
+                   </nav>
+               </div>
+           </div>
+
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h1 class="card-title"><i class="fa-solid fa-user-group fa-lg" style="color: #ffffff;"></i> Students</h1>
+                                <p class="card-text fs-1">100</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h1 class="card-title"><i class="fa-solid fa-graduation-cap fa-lg" style="color: #ffffff;"></i> Degrees</h1>
+                                <p class="card-text fs-1">4</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h1 class="card-title"><i class="fa-solid fa-book-open fa-lg" style="color: #ffffff;"></i> Modules</h1>
+                                <p class="card-text fs-1">15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Recent Students</h3>
+                        <table class="table caption-top">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Enrollment Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>John Doe</td>
+                                <td>2023-01-01</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Meredith Grey</td>
+                                <td>2023-01-01</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Richard Webber</td>
+                                <td>2023-01-01</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Recently Added Modules</h3>
+                        <table class="table caption-top">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Module Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Cyber Security Management</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Advance Database Systems</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Secure Coding</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" id="col-md-6">
+                        <div id="clock" class="clock-container text-dark">
+                            <div id="clock-text"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/5241448f6b.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.9/index.global.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+
+
+<script>
+    /*Clock*/
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+
+        const time = `${hours}:${minutes}:${seconds}`;
+        document.getElementById("clock-text").textContent = time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    /*Calendar*/
+    document.addEventListener('DOMContentLoaded', function (){
+        var calendarE1 = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarE1,{
+            initialView: 'dayGridMonth'
+            /*events:[
+                {
+                    title: 'Event 1',
+                    start: '2023-10-18'
+                },
+                {
+                    title: 'Event 2',
+                    start: '2023-10-20'
+                }
+            ]*/
+        });
+        calendar.render();
+
+        var today = new Date();
+        var todayStr = today.toISOString().slice(0, 10);
+
+        var dateCell = calendar.view.viewSpec.class === 'dayGridMonth' ?
+            calendar.view.queryDate(today):
+            null;
+
+        if (dateCell){
+            dateCell.el.classList.add('highlight-today');
+            calendarE1.classList.add('custom-calendar');
+        }
+    });
+</script>
+</body>
+</html>
