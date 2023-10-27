@@ -11,29 +11,11 @@
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
     </div>
-    <form th:action="@{/students/save}" method="post" th:object="${student}">
-        <input type="hidden" th:field="*{studentid}" />
+    <form th:action="@{/degree/save}" method="post" th:object="${degree}">
+        <input type="hidden" th:field="*{degreeid}" />
         <div class="mb-3">
-            <label for="full_name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="full_name" th:field="*{full_name}">
-        </div>
-        <div class="mb-3">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="text" class="form-control" id="dob" th:field="*{dob}" th:placeholder="YYYY-MM-DD">
-        </div>
-        <div th:if="${student_id == null}">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" th:field="*{email}">
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="enrollment_date" class="form-label">Enrollment Date</label>
-            <input type="text" class="form-control" id="enrollment_date" th:field="*{enrollment_date}" th:placeholder="YYYY-MM-DD">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="enable_student" th:field="*{enable_student}">
-            <label for="enable_student" class="form-check-label">Enable Student</label>
+            <label for="degreeName" class="form-label">Degree Name</label>
+            <input type="text" class="form-control" id="degreeName" th:field="*{degreeName}">
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary m-2">Submit</button>
@@ -44,7 +26,7 @@
 
 <script>
     function cancelBtnFunction(){
-        window.location = "[[@{/students}]]"
+        window.location = "[[@{/degree}]]"
     }
 </script>
 </body>

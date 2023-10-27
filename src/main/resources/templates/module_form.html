@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">[[${pageTitle}]]</h1>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <form th:action="@{/module/save}" method="post" th:object="${module}">
+        <input type="hidden" th:field="*{moduleid}" />
+        <div class="mb-3">
+            <label for="moduleName" class="form-label">Module Name</label>
+            <input type="text" class="form-control" id="moduleName" th:field="*{moduleName}">
+        </div>
+        <div class="mb-3">
+            <label for="degreeYear" class="form-label">Select Degree Year</label>
+            <select class="form-control" id="degreeYear" th:field="*{degreeYear}">
+                <option th:each="year : ${degreeYear}" th:value="${year}" th:text="${year}" th:selected="${year} == ${module.degreeYear}">First Year</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="degrees" class="form-label">Select the Degree</label>
+            <select class="form-control" id="degrees" th:field="*{degrees}" multiple>
+                <option th:each="degree : ${listDegree}" th:value="${degree.degreeid}" th:text="${degree.degreeName}"></option>
+            </select>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary m-2">Submit</button>
+            <button type="button" class="btn btn-secondary m-2" onclick="cancelBtnFunction()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script th:inline="javascript">
+    function cancelBtnFunction(){
+        window.location = "[[@{/module}]]"
+    }
+
+</script>
+</body>
+</html>

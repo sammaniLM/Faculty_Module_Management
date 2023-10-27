@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Modules</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<h1 class="text-center m-3">Modules</h1>
+<div class="container">
+    <div class="m-3">
+        <a th:href="@{/module/new}" class="btn btn-success">Add New Module</a>
+        <a th:href="@{/}" th:title="Home" style="float: right"><i class="fa-solid fa-house fa-2xl" style="color: #000000;"></i></a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Module Name</th>
+            <th>Degree Year</th>
+            <th>Degree</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="module:${listModule}">
+            <tr>
+                <td>[[${module.moduleid}]]</td>
+                <td>[[${module.moduleName}]]</td>
+                <td>[[${module.degreeYear}]]</td>
+                <td><ul style="list-style-type: none">
+                    <li th:each="degree: ${module.degrees}" th:text="${degree.degreeName}">Degree Name</li>
+                </ul></td>
+                <td>
+                    <a th:href="@{'/module/edit/' + ${module.moduleid}}" title="Edit Student Record"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #008000;"></i></a>
+                    <a th:href="@{'/module/delete/' + ${module.moduleid}}" title="Delete Student Record"><i class="fa-solid fa-trash fa-xl" style="color: #ff0000;"></i></a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<script src="https://kit.fontawesome.com/5241448f6b.js" crossorigin="anonymous"></script>
+</body>
+</html>

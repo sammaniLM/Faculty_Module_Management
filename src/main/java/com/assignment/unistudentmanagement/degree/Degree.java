@@ -2,6 +2,8 @@ package com.assignment.unistudentmanagement.degree;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "degree")
 public class Degree {
