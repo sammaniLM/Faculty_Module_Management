@@ -1,5 +1,6 @@
 package com.assignment.unistudentmanagement.student;
 
+import com.assignment.unistudentmanagement.degree.Degree;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -29,6 +30,10 @@ public class Student {
     public boolean isEnable_student() {
         return enable_student;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "degreeid")
+    private Degree degree;
 
     public void setEnable_student(boolean enable_student) {
         this.enable_student = enable_student;
@@ -76,14 +81,24 @@ public class Student {
         this.enrollment_date = enrollment_date;
     }
 
+    public Degree getDegree() {
+        return degree;
+    }
+
+    public void setDegree(Degree degree) {
+        this.degree = degree;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
-                "student_id=" + studentid +
+                "studentid=" + studentid +
                 ", full_name='" + full_name + '\'' +
                 ", dob=" + dob +
                 ", email='" + email + '\'' +
                 ", enrollment_date=" + enrollment_date +
+                ", degree=" + degree +
+                ", enable_student=" + enable_student +
                 '}';
     }
 }

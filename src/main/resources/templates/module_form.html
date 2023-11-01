@@ -19,8 +19,14 @@
         </div>
         <div class="mb-3">
             <label for="degreeYear" class="form-label">Select Degree Year</label>
-            <select class="form-control" id="degreeYear" th:field="*{degreeYear}">
+            <!--<select class="form-control" id="degreeYear" th:field="*{degreeYear}">
                 <option th:each="year : ${degreeYear}" th:value="${year}" th:text="${year}" th:selected="${year} == ${module.degreeYear}">First Year</option>
+            </select>-->
+            <!--<select class="form-control" id="degreeYear" th:field="*{degreeYear}">
+                <option th:each="year : ${degreeYears}" th:value="${year}" th:text="${year}" th:selected="${year} == ${module.degreeYear}"></option>
+            </select>-->
+            <select class="form-control" id="degreeYear" th:field="*{degreeYear}">
+                <option th:each="year : ${degreeYears}" th:value="${year}" th:text="${year}" th:selected="${year} == ${module.degreeYear}"></option>
             </select>
         </div>
         <div class="mb-3">

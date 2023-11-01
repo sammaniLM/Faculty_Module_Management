@@ -1,5 +1,6 @@
 package com.assignment.unistudentmanagement.student;
 
+import com.assignment.unistudentmanagement.degree.DegreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private DegreeService degreeService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,6 +40,7 @@ public class StudentController {
     @GetMapping("/students/new")
     public String registerNewStudent(Model model){
         model.addAttribute("student", new Student());
+        model.addAttribute("listDegree", degreeService.viewAll());
         model.addAttribute("pageTitle", "Register New User");
         return "student_form";
     }
@@ -65,6 +70,7 @@ public class StudentController {
         try {
            Student student =  studentService.get(studentid);
            model.addAttribute("student", student);
+           model.addAttribute("listDegree", degreeService.viewAll());
             model.addAttribute("pageTitle", "Update Student Record (ID : " + studentid +")");
             model.addAttribute("student_id", studentid);
             return "student_form";

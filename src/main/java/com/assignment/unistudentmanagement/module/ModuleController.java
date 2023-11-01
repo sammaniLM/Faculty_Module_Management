@@ -60,8 +60,8 @@ public class ModuleController {
             List<Degree> listDegree = degreeService.viewAll();
             model.addAttribute("listDegree", listDegree);
 
-            List<String> degreeYear = Arrays.asList("First Year", "Second Year", "Third Year", "Final Year");
-            model.addAttribute("degreeYear", degreeYear);
+            List<String> degreeYears = Arrays.asList("First Year", "Second Year", "Third Year", "Final Year");
+            model.addAttribute("degreeYears", degreeYears);
 
             return "module_form";
         }catch (ModuleNotFoundException e){

@@ -28,6 +28,13 @@
     </div>
     </div>
     <div class="mb-3">
+      <label for="degree" class="form-label">Select Degree</label>
+      <select class="form-control" id="degree" th:field="*{degree}">
+        <option th:each="degree : ${listDegree}" th:value="${degree.degreeid}" th:text="${degree.degreeName}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
       <label for="enrollment_date" class="form-label">Enrollment Date</label>
       <input type="text" class="form-control" id="enrollment_date" th:field="*{enrollment_date}" th:placeholder="YYYY-MM-DD">
     </div>
