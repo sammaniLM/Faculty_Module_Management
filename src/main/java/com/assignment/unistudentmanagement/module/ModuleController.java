@@ -22,13 +22,6 @@ public class ModuleController {
     @Autowired
     private DegreeService degreeService;
 
-    //@GetMapping("/")
-    /*public String index(Model model){
-        long moduleCount = moduleService.getModuleCount();
-        model.addAttribute("moduleCount", moduleCount);
-        return "index";
-    }*/
-
     @GetMapping("/module")
     public String viewModule(Model model){
         List<Module> listModule = moduleService.viewAll();

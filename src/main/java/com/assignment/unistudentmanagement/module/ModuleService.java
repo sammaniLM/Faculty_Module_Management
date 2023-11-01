@@ -1,6 +1,11 @@
 package com.assignment.unistudentmanagement.module;
 
+import com.assignment.unistudentmanagement.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +17,15 @@ public class ModuleService {
     @Autowired
     private ModuleRepository repository;
 
-   /* public long getModuleCount(){
+    public long getModuleCount() {
         return repository.count();
-    }*/
+    }
+
+    public List<Module> getLatestModules(){
+        Pageable pageble = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "moduleid"));
+        Page<Module> latestModule = repository.findAll(pageble);
+        return latestModule.getContent();
+    }
 
     public List<Module> viewAll(){
         return (List<Module>) repository.findAll();

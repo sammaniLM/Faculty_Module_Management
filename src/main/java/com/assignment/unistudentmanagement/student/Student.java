@@ -9,7 +9,7 @@ import java.util.Date;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "studentid")
     private Integer studentid;
 
@@ -23,6 +23,7 @@ public class Student {
     private String email;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date enrollment_date;
 
     public boolean isEnable_student() {

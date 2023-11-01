@@ -1,6 +1,10 @@
 package com.assignment.unistudentmanagement.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +14,16 @@ import java.util.Optional;
 public class StudentService {
     @Autowired
     private StudentRepository repository;
+
+    public long getStudentCount() {
+        return repository.count();
+    }
+
+    public List<Student> getLatestStudents(){
+        Pageable pageble = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "studentid"));
+        Page<Student> latestStudents = repository.findAll(pageble);
+        return latestStudents.getContent();
+    }
 
     public List<Student> viewAll(){
         return (List<Student>) repository.findAll();

@@ -13,6 +13,10 @@ public class DegreeService {
     @Autowired
     private DegreeRepository repository;
 
+    public long getDegreeCount() {
+        return repository.count();
+    }
+
     public List<Degree> viewAll(){
         return (List<Degree>) repository.findAll();
     }

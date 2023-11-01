@@ -104,7 +104,8 @@
                         <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fa-solid fa-user-group fa-lg" style="color: #ffffff;"></i> Students</h1>
-                                <p class="card-text fs-1">100</p>
+                                <!--<p class="card-text fs-1">100</p>-->
+                                <p class="card-text fs-1" th:text="${studentCount}"></p>
                             </div>
                         </div>
                     </div>
@@ -112,7 +113,7 @@
                         <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fa-solid fa-graduation-cap fa-lg" style="color: #ffffff;"></i> Degrees</h1>
-                                <p class="card-text fs-1">4</p>
+                                <p class="card-text fs-1" th:text="${degreeCount}"></p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +121,7 @@
                         <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                             <div class="card-body">
                                 <h1 class="card-title"><i class="fa-solid fa-book-open fa-lg" style="color: #ffffff;"></i> Modules</h1>
-                                <p class="card-text fs-1">15</p>
+                                <p class="card-text fs-1" th:text="${moduleCount}"></p>
                             </div>
                         </div>
                     </div>
@@ -134,26 +135,16 @@
                         <table class="table caption-top">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <!--<th scope="col">ID</th>-->
                                 <th scope="col">Name</th>
                                 <th scope="col">Enrollment Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>2023-01-01</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Meredith Grey</td>
-                                <td>2023-01-01</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Richard Webber</td>
-                                <td>2023-01-01</td>
+                            <tr th:each="student: ${latestStudents}">
+                                <!--<td th:text="${student.studentid}"></td>-->
+                                <td th:text="${student.full_name}"></td>
+                                <td th:text="${student.enrollment_date}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -163,22 +154,15 @@
                         <table class="table caption-top">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Module Name</th>
+                                <th scope="col">Degree Year</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Cyber Security Management</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Advance Database Systems</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Secure Coding</td>
+                            <tr th:each="modules: ${latestModule}">
+                                <!--<td th:text="${modules.moduleid}"></td>-->
+                                <td th:text="${modules.moduleName}"></td>
+                                <td th:text="${modules.degreeYear}"></td>
                             </tr>
                             </tbody>
                         </table>
