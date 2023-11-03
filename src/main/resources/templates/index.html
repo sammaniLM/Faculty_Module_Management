@@ -74,12 +74,12 @@
                             <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white"> Module Management</span></a>
                     </li>
                     <li>
-                        <a th:href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white"> Student Enrollments</span></a>
+                        <a th:href="@{/teachers}" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i><span class="ms-1 d-none d-sm-inline text-white lh-lg"> Teacher Enrollment</span> </a>
                     </li>
                     <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i><span class="ms-1 d-none d-sm-inline text-white lh-lg"> Teacher Enrollment</span> </a>
+                        <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> <span class="ms-1 d-none d-sm-inline text-white"> Student Enrollments</span></a>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
@@ -146,7 +146,6 @@
                             </thead>
                             <tbody>
                             <tr th:each="student: ${latestStudents}">
-                                <!--<td th:text="${student.studentid}"></td>-->
                                 <td th:text="${student.full_name}"></td>
                                 <td th:text="${student.enrollment_date}"></td>
                             </tr>
@@ -164,7 +163,6 @@
                             </thead>
                             <tbody>
                             <tr th:each="modules: ${latestModule}">
-                                <!--<td th:text="${modules.moduleid}"></td>-->
                                 <td th:text="${modules.moduleName}"></td>
                                 <td th:text="${modules.degreeYear}"></td>
                             </tr>

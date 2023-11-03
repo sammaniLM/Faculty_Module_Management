@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">[[${pageTitle}]]</h1>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <form th:action="@{/teachers/save}" method="post" th:object="${teachers}">
+        <input type="hidden" th:field="*{teacherid}" />
+        <div class="mb-3">
+            <label for="teacherName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="teacherName" th:field="*{name}">
+        </div>
+
+        <div class="mb-3">
+            <label for="modules" class="form-label">Select the Degree</label>
+            <select class="form-control" id="modules" th:field="*{modules}" multiple>
+                <option th:each="module : ${listModule}" th:value="${module.moduleid}" th:text="${module.moduleName}"></option>
+            </select>
+        </div>
+        <!--<div th:if="${teacherid == null}">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" th:field="*{username}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+        </div>
+        </div>-->
+        <div th:if="${teacherid == null}">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}">
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary m-2">Submit</button>
+            <button type="button" class="btn btn-secondary m-2" onclick="cancelBtnFunction()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script th:inline="javascript">
+    function cancelBtnFunction(){
+        window.location = "[[@{/teachers}]]"
+    }
+
+</script>
+</body>
+</html>
